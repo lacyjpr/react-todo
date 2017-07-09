@@ -3303,6 +3303,10 @@ mocha@2.4.5:
     mkdirp "0.5.1"
     supports-color "1.2.0"
 
+moment@2.12.0:
+  version "2.12.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.12.0.tgz#dc2560d19838d6c0731b1a6afa04675264d360d6"
+
 ms@0.7.1:
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.1.tgz#9cd13c03adbff25b65effde7ce864ee952017098"
