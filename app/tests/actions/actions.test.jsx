@@ -38,11 +38,9 @@ describe('Actions', () => {
 
 		store.dispatch(actions.startAddTodo(todoText)).then(() => {
 			const actions = store.getActions();
-			console.log(actions[0]);
 			expect(actions[0]).toInclude({
 				type: 'ADD_TODO'
 			});
-			console.log(actions[0].todo);
 			expect(actions[0].todo).toInclude({
 				text: todoText
 			});
