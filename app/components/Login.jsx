@@ -8,7 +8,7 @@ export class Login extends React.Component {
 		var {dispatch} = this.props;
 
 		dispatch(actions.startLogin());
-	},
+	}
 	render() {
 		return (
 			<div>
