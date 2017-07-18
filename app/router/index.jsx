@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Router, IndexRoute, hashHistory} from 'react-router';
+import {Route, Router, IndexRoute, browserHistory} from 'react-router';
 
 import TodoApp from 'TodoApp';
 import Login from 'Login';
@@ -20,7 +20,7 @@ var redirectIfLoggedIn = (nextState, replace, next) => {
 };
 
 export default (
-	<Router history={hashHistory}>
+	<Router history={browserHistory}>
 		<Route path="/">
 			<Route path="todos" component={TodoApp} onEnter={requireLogin}/>
 			<IndexRoute component={Login} onEnter={redirectIfLoggedIn}/>
