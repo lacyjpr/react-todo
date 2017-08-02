@@ -29,7 +29,9 @@ export var startAddTodo = (text) => {
 			text,
 			completed: false,
 			createdAt: moment().unix(),
-			completedAt: null
+			completedAt: null,
+			edited: false,
+			editedAt: null
 		};
 		var uid = getState().auth.uid;
 		var todoRef = firebaseRef.child(`users/${uid}/todos`).push(todo);
@@ -90,6 +92,40 @@ export var startToggleTodo = (id, completed) => {
 
 		return todoRef.update(updates).then(() => {
 			dispatch(updateTodo(id, updates));
+		});
+	};
+};
+
+export var startSaveEditedTodo = (id, text) => {
+	return (dispatch, getState) => {
+		var uid = getState().auth.uid;
+		var todoRef = firebaseRef.child(`users/${uid}/todos/${id}`);
+		var updates = {
+			text,
+			edited: true,
+			editedAt: moment().unix()
+		};
+
+		return todoRef.update(updates).then(() => {
+			dispatch(updateTodo(id, updates));
+		});
+	};
+};
+
+export var deleteTodo = (id) => {
+	return {
+		type: 'DELETE_TODO',
+		id
+	};
+}; 
+
+export var startDeleteTodo = (id) => {
+	return (dispatch, getState) => {
+		var uid = getState().auth.uid;
+		var todoRef = firebaseRef.child(`users/${uid}/todos/${id}`);
+
+		return todoRef.remove().then(() => {
+			dispatch(deleteTodo(id));
 		});
 	};
 };

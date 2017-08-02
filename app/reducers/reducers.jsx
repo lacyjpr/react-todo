@@ -42,6 +42,17 @@ export var todosReducer = (state = [], action) => {
 			...state,
 			...action.todos
 		];
+	case 'DELETE_TODO':
+		return state.filter((todo) => {
+			return todo.id !== action.id;
+		});
+	// case 'RESET_EDITABLE_TODOS':
+	// 	return state.map((todo) => {
+	// 		return {
+	// 			...todo,
+	// 			editable: false
+	// 		};
+	// 	});
 	case 'LOGOUT':
 		return [];	
 	default:

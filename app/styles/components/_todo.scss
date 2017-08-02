@@ -1,7 +1,9 @@
 .todo {
 	align-items: center;
+	border-bottom: solid 1px $light-grey-border;
 	cursor: pointer;
 	display: flex;
+	justify-content: space-between;
 	padding: 1rem;
 	transition: background .3s ease;
 
@@ -27,4 +29,14 @@
 		color: $light-color;
 		text-decoration: line-through;
 	}
+}
+
+.controls {
+	margin-left: 5px;
+	width: 25%;
+}
+
+.edit-input {
+	height: 1.6em;
+	padding: 0;
 }

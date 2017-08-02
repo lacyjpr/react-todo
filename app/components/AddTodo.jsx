@@ -12,7 +12,7 @@ export class AddTodo extends React.Component {
 		var {dispatch} = this.props;
 		var todoText = this.refs.todoText.value;
 
-		if (todoText.length >0) {
+		if (todoText.length > 0) {
 			this.refs.todoText.value = '';
 			dispatch(actions.startAddTodo(todoText));
 		} else {

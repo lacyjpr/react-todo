@@ -70,6 +70,16 @@ describe('Actions', () => {
 		expect(res).toEqual(action);
 	});
 
+	it('should generate delete todo action', () => {
+		var action = {
+			type: 'DELETE_TODO',
+			id: 1
+		};
+		var res = actions.deleteTodo(1);
+
+		expect(res).toEqual(action);
+	});
+
 	it('should generate login action object', () => {
 		const action = {
 			type: 'LOGIN',
@@ -134,6 +144,46 @@ describe('Actions', () => {
 				expect(mockActions[0].updates.completedAt).toExist();
 
 				done();
+			}, done);
+		});
+
+		it('should save todo edit and dispatch UPDATE_TODO action', (done) => {
+			const store = createMockStore({auth: {uid}});
+			const action = actions.startSaveEditedTodo(testTodoRef.key, 'abc');
+
+			store.dispatch(action).then(() => {
+				const mockActions = store.getActions();
+
+				expect(mockActions[0]).toInclude({
+					type: 'UPDATE_TODO',
+					id: testTodoRef.key,
+				});
+
+				expect(mockActions[0].updates).toInclude({
+					text: 'abc',
+					edited: true
+				});
+
+				expect(mockActions[0].updates.editedAt).toExist();
+				done();
+
+			}, done);
+		});
+
+		it('should delete todo and dispatch DELETE_TODO action', (done) => {
+			const store = createMockStore({auth: {uid}});
+			const action = actions.startDeleteTodo(testTodoRef.key);
+
+			store.dispatch(action).then(() => {
+				const mockActions = store.getActions();
+
+				expect(mockActions[0]).toInclude({
+					type: 'DELETE_TODO',
+					id: testTodoRef.key,
+				});
+
+				done();
+
 			}, done);
 		});
 

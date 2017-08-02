@@ -86,6 +86,72 @@ describe('Reducers', () => {
 			expect(res[0]).toEqual(todos[0]);
 		});
 
+		it('should update a todo when it is edited and saved', () => {
+			var todos = [
+				{
+					id: '111',
+					text: 'anything',
+					completed: false,
+					completedAt: undefined,
+					createdAt: 33000,
+					editable: true,
+					edited: false,
+					editedAt: undefined
+				}
+			];
+
+			var updates = {
+				text: 'nothing',
+				edited: true,
+				editedAt: 33001
+			};
+
+			var action = {
+				type: 'UPDATE_TODO',
+				id: todos[0].id,
+				updates
+			};
+
+			var res = reducers.todosReducer(df(todos), df(action));
+
+			expect(res[0].text).toEqual('nothing');
+			expect(res[0].edited).toBe(true);
+			expect(res[0].editedAt).toEqual(updates.editedAt);
+		});
+
+		it('should delete todo', () => {
+			var todos = [
+				{
+					id: 1,
+					text: 'b',
+					completed: false,
+					completedAt: 3000,
+					createdAt: 33000,
+					editable: false,
+					edited: false,
+					editedAt: undefined
+				},
+				{
+					id: 2,
+					text: 'b',
+					completed: false,
+					completedAt: 3000,
+					createdAt: 33000,
+					editable: false,
+					edited: false,
+					editedAt: undefined
+				}
+			];
+			var action = {
+				type: 'DELETE_TODO',
+				id: todos[0].id
+			};
+
+			var res = reducers.todosReducer(df(todos), df(action));
+
+			expect(res.length).toEqual(1);
+		});
+
 		it('should wipe todos on logout', () => {
 			var todos = [{
 				id: '111',
