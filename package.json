@@ -1,8 +1,8 @@
 {
-  "name": "boilerplate",
+  "name": "reacttodo",
   "version": "1.0.0",
-  "description": "Simple react app",
-  "main": "index.js",
+  "description": "React Todo App",
+  "main": "index.html",
   "scripts": {
     "test": "NODE_ENV=test karma start",
     "build": "webpack",
