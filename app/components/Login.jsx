@@ -23,9 +23,9 @@ export class Login extends React.Component {
 						<div className="callout callout-auth">
 							<h3>Login</h3>
 							<p>
-								Login with GitHub account below.
+								Login with Google account below.
 							</p>
-							<button className="button" onClick={this.onLogin}>Login With GitHub</button>
+							<button className="button" onClick={this.onLogin}>Login With Google</button>
 						</div>
 					</div>
 				</div>
